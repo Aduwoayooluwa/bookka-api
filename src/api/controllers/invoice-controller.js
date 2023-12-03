@@ -37,12 +37,6 @@ export async function createInvoice(req, res) {
         customerName, items, issueDate, dueDate, paid, invoiceNumber
     };
     console.log(invoiceData)
-    const { web5 } = await Web5.connect({
-         techPreview: {
-            dwnEndpoints: ["https://localhost:8000/"]
-        }
-    });
-
     if (!customerName || !items || !issueDate || !paid || !dueDate || !invoiceNumber) {
         return res.json({ message: "Missing some invoice fields.", status: 400 });
     }
