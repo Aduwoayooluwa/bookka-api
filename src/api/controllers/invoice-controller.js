@@ -2,7 +2,12 @@ import { web5 } from "../../utils/connect-web5.js"
 
 export async function GetInvoice(req, res) {
 
-    const { userDid } = req.params;
+    const { userDid } = req.query;
+    console.log(userDid)
+
+    if (!userDid) {
+        return res.json({ status: 400, message: "Missing DID"})
+    }
 
     try {
         const { records: invoiceRecords } = await web5.dwn.records.query({
