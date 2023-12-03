@@ -1,4 +1,4 @@
-import { web5 } from "../../utils/connect-web5.js"
+import { web5, userDid } from "../../utils/connect-web5.js"
 
 export async function GetInvoice(req, res) {
 
@@ -14,6 +14,7 @@ export async function GetInvoice(req, res) {
             from: userDid,
             message: {
                 filter: {
+                    
                     protocol: "https://codingpastor.dev/test",
                     protocolPath: "invoice-test"
                 }
@@ -56,7 +57,7 @@ export async function createInvoice(req, res) {
                 schema: "https://schema.org/Invoice",
                 //  protocol: 'http://codingpastor.dev/test',
                 // protocolPath: 'invoice-test',
-                // published: true,
+                published: true,
             }
         });
         const _data = await web5.dwn.records.read({
@@ -66,10 +67,11 @@ export async function createInvoice(req, res) {
                 }
             }
         });
+       const { status: initialstatus } = await record.send(userDid)
         
-        return res.json({ status: 201, message: "Invoice created Successfully", invoice: _data });
+        return res.json({ status: 201, message: "Invoice created Successfully", creationStatus: initialstatus });
     }
     catch (error) {
-        return res.json({ status: 500, message: "Internal Error" });
+        return res.json({ status: 500, message: error?.message });
     }
 }
