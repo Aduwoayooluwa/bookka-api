@@ -1,12 +1,11 @@
-import { Web5 } from "@web5/api";
-
-
+import { userDid } from "../../utils/connect-web5.js";
 // create did
 export const createDid = async (req, res) => {
-    const { did } = await Web5.connect();
+
 
     try {
-        return res.json({ did });
+
+        return res.json({ userDid });
     }
     catch (error) {
         return res.json({status: 500, message: "Internal Error"})
@@ -15,14 +14,10 @@ export const createDid = async (req, res) => {
 }
 // connect the did...
 export const authDid = async (req, res) => {
-    const { web5 } = await Web5.connect()
 
     const { userDid } = req.body;
 
     // const signature = await web5.did.sign(userDid);
-
-    // const isAuthentic = await web5.did.verify(userDid, signature);
-    
 
     if (!userDid) {
         return res.json({ status: 401, message: "No DID found" });
@@ -31,8 +26,11 @@ export const authDid = async (req, res) => {
     try {
         const did = await web5.did.resolve(userDid);
 
+
         if (did.didDocument.id) {
+
             return res.json({ status: 201, message: "DID confirmed" });
+
         }
         
     }
