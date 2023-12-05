@@ -1,16 +1,13 @@
-import { userDid } from "../../utils/connect-web5.js";
+import { userDid, web5 } from "../../utils/connect-web5.js";
 // create did
 export const createDid = async (req, res) => {
-
-
     try {
 
         return res.json({ userDid });
     }
     catch (error) {
-        return res.json({status: 500, message: "Internal Error"})
+        return res.json({status: 500, message: error.message})
     }
-
 }
 // connect the did...
 export const authDid = async (req, res) => {
@@ -35,6 +32,6 @@ export const authDid = async (req, res) => {
         
     }
     catch (error) {
-        return res.json({ status: 500, message: "Internal Error" });
+        return res.json({ status: 500, message: error.message });
     }
 }
