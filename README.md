@@ -4,7 +4,7 @@
 
 [Backend API URL](bookka-api.onrender.com)
 
-json```
+```
     {
         userDid: "did:ion:12hewiwiw193923920203i39393939230202ui"
     }
