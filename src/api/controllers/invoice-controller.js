@@ -64,11 +64,14 @@ export async function createInvoice(req, res) {
                 }
             }
         });
-       const { status: initialstatus } = await record.send(userDid)
+
+        console.log(_data);
+
+       const { status } = await record.send(userDid)
         
-        return res.json({ status: 201, message: "Invoice created Successfully", creationStatus: initialstatus });
+        return res.json({ status, message: "Invoice created Successfully" });
     }
     catch (error) {
-        return res.json({ status: 500, message: error?.message });
+        return res.json({ status: 400, message: error?.message });
     }
 }

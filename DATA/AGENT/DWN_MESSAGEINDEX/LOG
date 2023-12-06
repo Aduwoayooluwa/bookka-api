@@ -1,3 +1,5 @@
-2023/12/06-03:07:31.155 48fcc Recovering log #332
-2023/12/06-03:07:31.163 48fcc Delete type=0 #332
-2023/12/06-03:07:31.163 48fcc Delete type=3 #331
+2023/12/06-08:30:21.172 3c5e8 Recovering log #338
+2023/12/06-08:30:21.172 3c5e8 Level-0 table #340: started
+2023/12/06-08:30:21.212 3c5e8 Level-0 table #340: 3794 bytes OK
+2023/12/06-08:30:21.245 3c5e8 Delete type=0 #338
+2023/12/06-08:30:21.245 3c5e8 Delete type=3 #337
