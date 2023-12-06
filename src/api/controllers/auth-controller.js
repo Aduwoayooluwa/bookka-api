@@ -13,6 +13,7 @@ export const createDid = async (req, res) => {
 export const authDid = async (req, res) => {
 
     const { userDid } = req.body;
+    console.log(userDid)
 
     // const signature = await web5.did.sign(userDid);
 
@@ -22,11 +23,12 @@ export const authDid = async (req, res) => {
 
     try {
         const did = await web5.did.resolve(userDid);
+        console.log(did)
 
 
         if (did.didDocument.id) {
 
-            return res.json({ status: 201, message: "DID confirmed" });
+            return res.json({ status: 201, message: "DID confirmed", did });
 
         }
         

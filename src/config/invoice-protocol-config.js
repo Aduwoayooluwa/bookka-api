@@ -15,15 +15,15 @@ export async function invoiceProtocolConfig() {
 }
 
 export async function invoiceProtocolQuery() {
-    const { protocols, status } = await web5.dwn.protocols.query({
+    const response = await web5.dwn.protocols.query({
         message: {
             filter: {
-            protocol: "https://codingpastor.dev/invoice-protocol"
+                dataFormat:"application/json"
             }
         }
     });
+    console.log(response)
+    // console.log(protocols[0].definition.protocol);
 
-    console.log(protocols[0].definition.protocol);
-
-    return protocols[0].definition.protocol;
+    return response;
 }

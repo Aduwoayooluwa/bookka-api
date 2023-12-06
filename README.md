@@ -13,6 +13,15 @@ Request Body Sample
     }
 ```
 
+Response 
+```
+    {
+        message:"DID Verified",
+        verifiable_credentials: "",
+        didDocument: ""
+    }
+```
+
 2. Create invoice
 
 Request Body Example

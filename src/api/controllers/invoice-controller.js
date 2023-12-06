@@ -3,28 +3,25 @@ import { web5, userDid } from "../../utils/connect-web5.js"
 export async function GetInvoice(req, res) {
 
     const { userDid } = req.query;
-    console.log(userDid)
+
 
     if (!userDid) {
         return res.json({ status: 400, message: "Missing DID"})
     }
 
     try {
-        const { records: invoiceRecords } = await web5.dwn.records.query({
+        const response = await web5.dwn.records.query({
             from: userDid,
             message: {
-                filter: {
-                    
-                    protocol: "https://codingpastor.dev/test",
-                    protocolPath: "invoice-test"
+                filter: {             
+                   dataFormat:"application/json"
                 }
             }
         });
-
-        return res.json({ status: 201, data: invoiceRecords })
+        return res.json({ status: response.status, data: response.records })
     }
     catch (error) {
-        res.json({ status: 500, message: "Internal Error" });
+        res.json({ status: 400, message: error?.message });
     }
 
 }
