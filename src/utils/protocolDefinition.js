@@ -1,5 +1,5 @@
 export const inVoiceProtocolDefinition = {
-    protocol: "https://codingpastor.dev/invoice-protocol",
+    protocol: "https://codingpastor.dev/invoiceProtocol",
     published: true,
     types: {
         items: {
@@ -20,7 +20,7 @@ export const inVoiceProtocolDefinition = {
         },
         invoice: {
             dataFormats: ["application/json"],
-            schema: "https://schema.org/issueNumber"
+            schema: "https://schema.org/invoice"
         },
         customerName: {
             dataFormats: ["text/plain"],
@@ -63,7 +63,7 @@ export const inVoiceProtocolDefinition = {
                 { who: "recipient", of: "message", can: "read" },  
             ]
         },
-        invoiceNumber: {
+        invoice: {
              $actions: [
                 { who: "anyone", can: "write" },    
                 { who: "author", of: "message", can: "read" },    

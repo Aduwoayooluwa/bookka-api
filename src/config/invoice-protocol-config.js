@@ -9,9 +9,9 @@ export async function invoiceProtocolConfig() {
             definition: inVoiceProtocolDefinition
         }
     });
-    
-    protocol.send(userDid)
-    return status;
+    console.log(status)
+    return protocol.send(userDid)
+
 }
 
 export async function invoiceProtocolQuery() {
