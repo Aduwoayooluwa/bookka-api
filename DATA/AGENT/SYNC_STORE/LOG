@@ -1,14 +1,14 @@
-2023/12/13-00:01:30.176 1f93c Recovering log #728
-2023/12/13-00:01:30.176 1f93c Level-0 table #730: started
-2023/12/13-00:01:30.199 1f93c Level-0 table #730: 1414 bytes OK
-2023/12/13-00:01:30.206 1f93c Delete type=0 #728
-2023/12/13-00:01:30.206 1f93c Delete type=3 #726
-2023/12/13-00:01:30.239 1e8f8 Compacting 4@0 + 1@1 files
-2023/12/13-00:01:30.255 1e8f8 Generated table #732@0: 99 keys, 14846 bytes
-2023/12/13-00:01:30.255 1e8f8 Compacted 4@0 + 1@1 files => 14846 bytes
-2023/12/13-00:01:30.256 1e8f8 compacted to: files[ 0 1 0 0 0 0 0 ]
-2023/12/13-00:01:30.257 1e8f8 Delete type=2 #719
-2023/12/13-00:01:30.257 1e8f8 Delete type=2 #721
-2023/12/13-00:01:30.257 1e8f8 Delete type=2 #724
-2023/12/13-00:01:30.257 1e8f8 Delete type=2 #727
-2023/12/13-00:01:30.258 1e8f8 Delete type=2 #730
+2023/12/16-00:06:20.853 286b8 Recovering log #973
+2023/12/16-00:06:20.853 286b8 Level-0 table #975: started
+2023/12/16-00:06:20.870 286b8 Level-0 table #975: 1414 bytes OK
+2023/12/16-00:06:20.877 286b8 Delete type=0 #973
+2023/12/16-00:06:20.877 286b8 Delete type=3 #971
+2023/12/16-00:06:20.937 27ae8 Compacting 4@0 + 1@1 files
+2023/12/16-00:06:21.058 27ae8 Generated table #977@0: 99 keys, 14846 bytes
+2023/12/16-00:06:21.058 27ae8 Compacted 4@0 + 1@1 files => 14846 bytes
+2023/12/16-00:06:21.059 27ae8 compacted to: files[ 0 1 0 0 0 0 0 ]
+2023/12/16-00:06:21.060 27ae8 Delete type=2 #964
+2023/12/16-00:06:21.060 27ae8 Delete type=2 #966
+2023/12/16-00:06:21.061 27ae8 Delete type=2 #969
+2023/12/16-00:06:21.061 27ae8 Delete type=2 #972
+2023/12/16-00:06:21.062 27ae8 Delete type=2 #975
