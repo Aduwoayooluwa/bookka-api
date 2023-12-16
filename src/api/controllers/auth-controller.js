@@ -23,7 +23,7 @@ export const authDid = async (req, res) => {
     const { userDid, fullName } = req.body;
     console.log(fullName);
     if (!userDid) {
-        return res.json({ status: 401, message: "Missing Did" });
+        return res.status(400).json({ status: 401, message: "Missing Did" });
     }
     try {
         const issuerDid = await DidIonMethod.create();
@@ -31,8 +31,7 @@ export const authDid = async (req, res) => {
         const did = await web5.did.resolve(userDid);
 
         
-   
-        if (did) {
+        if (did.didDocument.id) {
             const vc = await VerifiableCredential.create({
                 type: "BookkaApp",
                 issuer: issuerDid.did,
@@ -43,27 +42,29 @@ export const authDid = async (req, res) => {
      
             // sign the credentials
             const signedVcJwt = await vc.sign({ did: issuerDid });
-            return res.json({ status: 201, message: "You are confirmed", signedVcJwt });
+            return res.status(201).json({ status: 201, message: "You are confirmed", signedVcJwt, description: "Copy and Save both your DID and SignedJWT in a safe place." });
 
         }
         
     }
     catch (error) {
         console.log(error)
-        return res.json({ status: 400, message: error.message });
+        return res.status(400).json({ status: 400, message: error.message });
     }
 }
 
 export const validateUser = async (req, res) => {
+    //  get the signed jwt from the user..
     const { signedVcJwt } = req.body
 
     try {
+        // verfiy the signed jwt..
         await VerifiableCredential.verify({ vcJwt: signedVcJwt });
         res.json({message: "Verification successful", status: 201})
     } 
     catch (error) {
-        return res.json({
-            message: error.message,status: 400
+        return res.status(400).json({
+            message: error.message
         })
     }
 }

@@ -33,7 +33,7 @@ export async function GetInvoice(req, res) {
         return res.json({ status: response.status, data:  allRecords})
     }
     catch (error) {
-        res.json({ status: 400, message: error?.message });
+        res.status(400).json({ status: 400, message: error?.message });
     }
 
 }
@@ -155,9 +155,9 @@ export const deleteInvoice = async (req, res) => {
             console.log(delStatus)
         }
 
-        return res.json({status, message: "Deleted Invoice", delStatus})
+        return res.status(201).json({status, message: "Deleted Invoice", delStatus})
     }
     catch (error) {
-        res.json({error})
+        res.status(400).json({error})
     }
 }
