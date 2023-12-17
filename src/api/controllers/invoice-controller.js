@@ -7,7 +7,7 @@ export async function GetInvoice(req, res) {
 
 
     if (!userDid) {
-        return res.json({ status: 400, message: "Missing DID"})
+        return res.status(400).json({ status: 400, message: "Missing DID"})
     }
 
     try {
@@ -30,7 +30,7 @@ export async function GetInvoice(req, res) {
             };
           })
         );
-        return res.json({ status: response.status, data:  allRecords})
+        return res.json({ status: response?.status, data:  allRecords})
     }
     catch (error) {
         res.status(400).json({ status: 400, message: error?.message });
@@ -45,7 +45,7 @@ export async function createInvoice(req, res) {
         businessCity,
         businessCountry,
         totalPrice,
-        items,
+        // items,
         businessName,
         country,
         city,
@@ -66,9 +66,9 @@ export async function createInvoice(req, res) {
     // Check for missing fields in the request body
     const requiredFields = [
         'customerName',
-        'items',
-        'invoiceDate',
-        'dueDate',
+        // 'items',
+        // 'invoiceDate',
+        // 'dueDate',
         'invoiceNumber',
         // 'paid',
     ];
@@ -85,7 +85,7 @@ export async function createInvoice(req, res) {
         businessCity,
         businessCountry,
         totalPrice,
-        items,
+        // items,
         businessName,
         country,
         city,
