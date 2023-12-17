@@ -107,7 +107,7 @@ export async function createInvoice(req, res) {
         const { record, status } = await web5.dwn.records.write({
             data: invoiceData,
             message: {
-                recipient: userDid, // You need to define 'userDid' somewhere
+                recipient: userDid, 
                 dataFormat: 'application/json',
                 schema: inVoiceProtocolDefinition.types.invoice.schema,
                 protocol: inVoiceProtocolDefinition.protocol,

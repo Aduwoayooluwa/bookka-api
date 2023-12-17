@@ -1,5 +1,5 @@
 export const inVoiceProtocolDefinition = {
-    protocol: "https://codingpastor.dev/invoiceProtocol",
+    protocol: "https://codingpastor.dev/bookkeepingProtocol",
     published: true,
     types: {
         items: {
@@ -74,5 +74,66 @@ export const inVoiceProtocolDefinition = {
 }
 
 export const bookkeepingProtocolDefinition = {
-    
+    protocol: "https://codingpastor.dev/bookkeepingProtocol",
+    published: true,
+    types: {
+        description: {
+            dataFormats: ["application/json"],
+            schema: "https://schema.org/items"
+        },
+        amount: {
+            dataFormats: ["application/json"],
+            schema: "https://schema.org/endDate"
+        },
+        date: {
+            dataFormats: ["application/json"],
+            schema: "https://schema.org/dateSent"
+        },
+        type: {
+            dataFormats: ["application/json"],
+            schema: "https://schema.org/PaymentStatusType"
+        },
+        category: {
+            dataFormats: ["text/plain"],
+            schema: "https://schema.org/legalName"
+        }
+    },
+    structure: {
+        description: {
+            $actions: [
+                { who: "anyone", can: "write" },    
+                { who: "author", of: "message", can: "read" },    
+                { who: "recipient", of: "message", can: "read" },  
+            ]
+        },
+        amount: {
+             $actions: [
+                { who: "anyone", can: "write" },    
+                { who: "author", of: "message", can: "read" },    
+                { who: "recipient", of: "message", can: "read" },  
+            ]
+        },
+        date: {
+             $actions: [
+                { who: "anyone", can: "write" },    
+                { who: "author", of: "message", can: "read" },    
+                { who: "recipient", of: "message", can: "read" },  
+            ]
+        },
+        type: {
+             $actions: [
+                { who: "anyone", can: "write" },    
+                { who: "author", of: "message", can: "read" },    
+                { who: "recipient", of: "message", can: "read" },  
+            ]
+        },
+        category: {
+             $actions: [
+                { who: "anyone", can: "write" },    
+                { who: "author", of: "message", can: "read" },    
+                { who: "recipient", of: "message", can: "read" },  
+            ]
+        },
+      
+    }
 }
