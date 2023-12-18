@@ -1,5 +1,5 @@
 export const inVoiceProtocolDefinition = {
-    protocol: "https://codingpastor.dev/bookkeepingProtocol",
+    protocol: "https://codingpastor.dev/invoiceProtocol",
     published: true,
     types: {
         items: {

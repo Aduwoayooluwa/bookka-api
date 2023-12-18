@@ -1,5 +1,5 @@
-2023/12/17-20:11:37.012 34fdc Recovering log #1198
-2023/12/17-20:11:37.012 34fdc Level-0 table #1200: started
-2023/12/17-20:11:37.028 34fdc Level-0 table #1200: 1369 bytes OK
-2023/12/17-20:11:37.036 34fdc Delete type=0 #1198
-2023/12/17-20:11:37.036 34fdc Delete type=3 #1196
+2023/12/18-06:00:29.216 182ec Recovering log #1307
+2023/12/18-06:00:29.216 182ec Level-0 table #1309: started
+2023/12/18-06:00:29.238 182ec Level-0 table #1309: 1369 bytes OK
+2023/12/18-06:00:29.245 182ec Delete type=0 #1307
+2023/12/18-06:00:29.246 182ec Delete type=3 #1305

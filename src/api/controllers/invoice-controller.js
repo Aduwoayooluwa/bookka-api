@@ -3,25 +3,34 @@ import { inVoiceProtocolDefinition } from "../../utils/protocolDefinition.js";
 
 export async function GetInvoice(req, res) {
 
-    const { userDid } = req.query;
+    const { Did } = req.query;
 
 
-    if (!userDid) {
+    if (!Did) {
         return res.status(400).json({ status: 400, message: "Missing DID"})
     }
 
     try {
         const response = await web5.dwn.records.query({
-            from: userDid,
+            // from: Did,
             message: {
                 filter: {             
-                   dataFormat:"application/json"
+                    dataFormat: "application/json",
+                    
                 }
             }
         });
-        
+        const _data = await web5.dwn.records.query({
+            message: {
+                filter: {
+                    protocol: "https://codingpastor.dev/invoiceProtocol",
+                },
+            },
+        });
+
+
         const allRecords = await Promise.all(
-          response.records.map(async (record) => {
+          _data.records.map(async (record) => {
             const data = await record.data.json();
             console.log("dm", data)
             return {
@@ -61,6 +70,7 @@ export async function createInvoice(req, res) {
         customerCountry,
         invoiceNumber,
         paid,
+        Did
     } = req.body;
 
     // Check for missing fields in the request body
@@ -71,6 +81,7 @@ export async function createInvoice(req, res) {
         // 'dueDate',
         'invoiceNumber',
         // 'paid',
+        "Did"
     ];
 
     const missingFields = requiredFields.filter((field) => !req.body[field]);
@@ -107,7 +118,7 @@ export async function createInvoice(req, res) {
         const { record, status } = await web5.dwn.records.write({
             data: invoiceData,
             message: {
-                recipient: userDid, 
+                recipient: Did, 
                 dataFormat: 'application/json',
                 schema: inVoiceProtocolDefinition.types.invoice.schema,
                 protocol: inVoiceProtocolDefinition.protocol,
@@ -115,17 +126,18 @@ export async function createInvoice(req, res) {
             },
         });
 
-        const _data = await web5.dwn.records.read({
+        const _data = await web5.dwn.records.query({
             message: {
                 filter: {
-                    recordId: record.id,
+                    protocol: "https://codingpastor.dev/invoiceProtocol",
                 },
             },
         });
 
 
 
-        return res.status(200).json({ status, record, userDid });
+
+        return res.status(200).json({ status, record, Did, _data });
     } catch (error) {
         console.error(error); // Log the error for debugging
         return res.status(400).json({ message: error.message });
@@ -142,7 +154,8 @@ export const deleteInvoice = async (req, res) => {
             form: userDid,
             message: {
                 filter: {
-                    dataFormat: "application/json"
+                    dataFormat: "application/json",
+                    
                 }
             }
         });

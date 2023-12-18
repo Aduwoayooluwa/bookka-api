@@ -1,7 +1,13 @@
-import { bookkeepingProtocolDefinition } from "../utils/protocolDefinition";
+import { bookkeepingProtocolDefinition } from "../utils/protocolDefinition.js";
+import { web5 } from "../utils/connect-web5.js";
 
+export async function bookkeepingProtocolConfig(req, res) {
+    const { userDid } = req.body;
 
-export async function bookkeepingProtocolConfig() {
+    if (!userDid) { 
+        return res.status(400).json({message: "Missing Did"})
+    }
+
     const { protocol, status } = await web5.dwn.protocols.configure({
         message: {
             definition: bookkeepingProtocolDefinition

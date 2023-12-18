@@ -1,16 +1,21 @@
-import { web5 } from "../../utils/connect-web5";
-import { bookkeepingProtocolDefinition } from "../../utils/protocolDefinition";
+import { web5 } from "../../utils/connect-web5.js";
+import { bookkeepingProtocolDefinition } from "../../utils/protocolDefinition.js";
 
 export async function saveBookkeeping(req, res) {
     // type: expense, income
-    const { recordDate, amount, description, type } = req.body;
+    const { recordDate, amount, description, type, Did, category } = req.body;
     
     const bookkeeppingData = {
         recordDate,
         amount,
         description,
         type,
-        userDid
+        Did,
+        category
+    }
+
+    if (!Did) {
+        return res.status(400).json({status: 400, message: "Missing Did"})
     }
 
     if (!recordDate || !amount || !description || !type) { 
@@ -21,7 +26,7 @@ export async function saveBookkeeping(req, res) {
         const { record, status } = await web5.dwn.records.write({
             data: bookkeeppingData,
             message: {
-                recipient: userDid,
+                recipient: Did,
                 dataFormat: "application/json",
                 schema: bookkeepingProtocolDefinition.types.amount.schema,
                 protocol: bookkeepingProtocolDefinition.protocol,
@@ -29,7 +34,7 @@ export async function saveBookkeeping(req, res) {
             }
         });
 
-        return res.status(200).json({ status, record, userDid });
+        return res.status(200).json({ status, record, Did });
 
     }
     catch (error) {
@@ -45,14 +50,14 @@ export async function GetBookkeeping(req, res) {
     }
 
      try {
-        const response = await web5.dwn.records.query({
-            from: userDid,
+         const response = await web5.dwn.records.query({
             message: {
-                filter: {             
-                   dataFormat:"application/json"
-                }
-            }
+                filter: {
+                    protocol: "https://codingpastor.dev/bookkeeppingProtocol",
+                },
+            },
         });
+
         
         const allRecords = await Promise.all(
           response.records.map(async (record) => {
